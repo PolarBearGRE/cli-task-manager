@@ -1,0 +1,5 @@
+# [Ignored Files]
+.vscode
+TaskManager.sln
+bin/
+obj/
