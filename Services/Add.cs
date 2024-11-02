@@ -54,7 +54,11 @@ namespace TaskManager.Services {
         // Method to get the value of an argument
         private static string? GetArgumentValue(string[] args, ref int index) {
             if (index + 1 < args.Length) {
-                return args[++index];
+                var value = args[++index];
+                while (index + 1 < args.Length && !args[index + 1].StartsWith("-")) {
+                    value += " " + args[++index];
+                }
+                return value;
             }
             return null;
         }
