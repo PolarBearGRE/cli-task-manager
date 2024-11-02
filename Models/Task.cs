@@ -1,5 +1,3 @@
-using System;
-
 namespace TaskManager.Models {
     // Class representing a task
     public class Task {

@@ -1,6 +1,4 @@
 using TaskManager.Models;
-using System;
-using System.Collections.Generic;
 
 namespace TaskManager.Services {
     // Service class for adding tasks
@@ -21,7 +19,7 @@ namespace TaskManager.Services {
                 { "-t", value => task.Title = value }, // Set the task title
                 { "-d", value => task.Description = value }, // Set the task description
                 { "-s", value => task.Status = (int)ParseEnum<StatusEnum>(value, "Status") }, // Set the task status
-                { "-p", value => task.Priority = (int)ParseEnum<PriorityEnum>(value, "Priority") } // Set the task priority
+                { "-pr", value => task.Priority = (int)ParseEnum<PriorityEnum>(value, "Priority") } // Set the task priority
             };
 
             // Process each argument
