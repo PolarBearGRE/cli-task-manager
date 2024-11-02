@@ -3,3 +3,4 @@
 TaskManager.sln
 bin/
 obj/
+database.json

@@ -1,10 +1,16 @@
-﻿namespace TaskManager {
+﻿using TaskManager.Services;
+
+namespace TaskManager {
     public class TaskManager {
         static void Main(string[] args) {
+            if (args.Length == 0) {
+                Console.WriteLine("No command provided. Please use one of the following commands: add, list, update, delete.");
+                return;
+            }
 
-            switch (args[0].ToLower()){
+            switch (args[0].ToLower()) {
                 case "add":
-                    Console.WriteLine("add");
+                    Add.AddTask(args.Skip(1).ToArray());
                     break;
                 case "list":
                     Console.WriteLine("list");
@@ -16,7 +22,7 @@
                     Console.WriteLine("delete");
                     break;
                 default:
-                    Console.WriteLine("Wrong command! Please use one the following commands: add, list, update and delete.");
+                    Console.WriteLine("Wrong command! Please use one of the following commands: add, list, update, delete.");
                     break;
             }
         }
