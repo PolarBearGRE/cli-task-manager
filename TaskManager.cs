@@ -21,7 +21,7 @@ namespace TaskManager {
                     Console.WriteLine("update"); // Placeholder for update command
                     break;
                 case "delete":
-                    Console.WriteLine("delete"); // Placeholder for delete command
+                    Delete.DeleteTask(args.Skip(1).ToArray()); // Call the DeleteTask method
                     break;
                 default:
                     Console.WriteLine("Wrong command! Please use one of the following commands: add, list, update, delete.");

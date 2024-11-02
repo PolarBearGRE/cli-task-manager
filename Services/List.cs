@@ -105,13 +105,12 @@ namespace TaskManager.Services {
 
         // Method to print a single task
         private static void PrintTask(Models.Task task) {
-            Console.WriteLine($"ID: {task.Id}");
-            Console.WriteLine($"Title: {task.Title}");
-            Console.WriteLine($"Description: {task.Description}");
-            Console.WriteLine($"Status: {Enum.GetName(typeof(StatusEnum), task.Status)}");
-            Console.WriteLine($"Priority: {Enum.GetName(typeof(PriorityEnum), task.Priority)}");
             if (task.Deleted == null) {
-                Console.WriteLine($"Deleted: {task.Deleted}");
+                Console.WriteLine($"ID: {task.Id}");
+                Console.WriteLine($"Title: {task.Title}");
+                Console.WriteLine($"Description: {task.Description}");
+                Console.WriteLine($"Status: {Enum.GetName(typeof(StatusEnum), task.Status)}");
+                Console.WriteLine($"Priority: {Enum.GetName(typeof(PriorityEnum), task.Priority)}");
             }
             Console.WriteLine();
         }
