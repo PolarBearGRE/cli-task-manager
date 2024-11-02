@@ -15,7 +15,7 @@ namespace TaskManager {
                     Add.AddTask(args.Skip(1).ToArray()); // Call the AddTask method
                     break;
                 case "list":
-                    Console.WriteLine("list"); // Placeholder for list command
+                    List.ListTasks(args.Skip(1).ToArray()); // Call the ListTasks method
                     break;
                 case "update":
                     Console.WriteLine("update"); // Placeholder for update command
