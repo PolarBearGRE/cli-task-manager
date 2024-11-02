@@ -1,15 +1,20 @@
 using TaskManager.Models;
 
-namespace TaskManager.Services {
-    public class Update {
+namespace TaskManager.Services
+{
+    public class Update
+    {
         // Method to update a task based on the provided arguments
-        public static void UpdateTask(string[] args) {
-            if (args.Length < 2) {
+        public static void UpdateTask(string[] args)
+        {
+            if (args.Length < 2)
+            {
                 Console.WriteLine("Invalid command. Usage: update <id> [-t \"title\"] [-d \"description\"] [-s status] [-pr priority]");
                 return;
             }
 
-            if (!int.TryParse(args[0], out int id)) {
+            if (!int.TryParse(args[0], out int id))
+            {
                 Console.WriteLine("Invalid ID format. Usage: update <id> [-t \"title\"] [-d \"description\"] [-s status] [-pr priority]");
                 return;
             }
@@ -17,7 +22,8 @@ namespace TaskManager.Services {
             var tasks = Storage.LoadTasks(); // Load existing tasks
 
             var task = tasks.FirstOrDefault(t => t.Id == id);
-            if (task == null || task.Deleted != null) {
+            if (task == null || task.Deleted != null)
+            {
                 Console.WriteLine($"Task with ID {id} does not exist.");
                 return;
             }
@@ -29,11 +35,14 @@ namespace TaskManager.Services {
                 { "-pr", value => task.Priority = (int)ParseEnum<PriorityEnum>(value, "Priority") } // Update the task priority
             };
 
-            for (int i = 1; i < args.Length; i++) {
-                if (argumentHandlers.ContainsKey(args[i].ToLower())) {
+            for (int i = 1; i < args.Length; i++)
+            {
+                if (argumentHandlers.ContainsKey(args[i].ToLower()))
+                {
                     var flag = args[i].ToLower();
                     var value = GetArgumentValue(args, ref i);
-                    if (value == null) {
+                    if (value == null)
+                    {
                         Console.WriteLine($"Error: '{flag}' flag requires a value.");
                         return;
                     }
@@ -49,10 +58,13 @@ namespace TaskManager.Services {
         }
 
         // Method to get the value of an argument
-        private static string? GetArgumentValue(string[] args, ref int index) {
-            if (index + 1 < args.Length) {
+        private static string? GetArgumentValue(string[] args, ref int index)
+        {
+            if (index + 1 < args.Length)
+            {
                 var value = args[++index];
-                while (index + 1 < args.Length && !args[index + 1].StartsWith("-")) {
+                while (index + 1 < args.Length && !args[index + 1].StartsWith("-"))
+                {
                     value += " " + args[++index];
                 }
                 return value;
@@ -61,10 +73,14 @@ namespace TaskManager.Services {
         }
 
         // Method to parse an enumeration value
-        private static TEnum ParseEnum<TEnum>(string value, string fieldName) where TEnum : struct {
-            if (Enum.TryParse(value, out TEnum result)) {
+        private static TEnum ParseEnum<TEnum>(string value, string fieldName) where TEnum : struct
+        {
+            if (Enum.TryParse(value, out TEnum result))
+            {
                 return result;
-            } else {
+            }
+            else
+            {
                 throw new ArgumentException($"Invalid value for {fieldName}: {value}");
             }
         }

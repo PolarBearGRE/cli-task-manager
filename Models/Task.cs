@@ -1,6 +1,7 @@
-namespace TaskManager.Models {
-    // Class representing a task
-    public class Task {
+namespace TaskManager.Models
+{
+    public class Task
+    {
         public int Id { get; set; } = default(int); // Unique identifier for the task
         public string? Title { get; set; } = default(string); // Title of the task
         public string? Description { get; set; } = default(string); // Description of the task

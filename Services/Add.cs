@@ -1,16 +1,14 @@
 using TaskManager.Models;
 
-namespace TaskManager.Services {
-    // Service class for adding tasks
-    public class Add {
-        // Method to add a task based on command-line arguments
-        public static void AddTask(string[] args) {
-            Console.WriteLine("Arguments received:");
-            foreach (var arg in args) {
-                Console.WriteLine(arg); // Print each argument
-            }
+namespace TaskManager.Services
+{
+    public class Add
+    {
+        public static void AddTask(string[] args)
+        {
 
-            var task = new Models.Task {
+            var task = new Models.Task
+            {
                 Created = DateTime.UtcNow // Set the creation timestamp
             };
 
@@ -23,11 +21,14 @@ namespace TaskManager.Services {
             };
 
             // Process each argument
-            for (int i = 0; i < args.Length; i++) {
-                if (argumentHandlers.ContainsKey(args[i].ToLower())) {
+            for (int i = 0; i < args.Length; i++)
+            {
+                if (argumentHandlers.ContainsKey(args[i].ToLower()))
+                {
                     var flag = args[i].ToLower();
                     var value = GetArgumentValue(args, ref i);
-                    if (value == null) {
+                    if (value == null)
+                    {
                         Console.WriteLine($"Error: '{flag}' flag requires a value.");
                         return;
                     }
@@ -50,10 +51,13 @@ namespace TaskManager.Services {
         }
 
         // Method to get the value of an argument
-        private static string? GetArgumentValue(string[] args, ref int index) {
-            if (index + 1 < args.Length) {
+        private static string? GetArgumentValue(string[] args, ref int index)
+        {
+            if (index + 1 < args.Length)
+            {
                 var value = args[++index];
-                while (index + 1 < args.Length && !args[index + 1].StartsWith("-")) {
+                while (index + 1 < args.Length && !args[index + 1].StartsWith("-"))
+                {
                     value += " " + args[++index];
                 }
                 return value;
@@ -62,19 +66,27 @@ namespace TaskManager.Services {
         }
 
         // Method to parse an integer value
-        private static int ParseInt(string value, string fieldName) {
-            if (int.TryParse(value, out int result)) {
+        private static int ParseInt(string value, string fieldName)
+        {
+            if (int.TryParse(value, out int result))
+            {
                 return result;
-            } else {
+            }
+            else
+            {
                 throw new ArgumentException($"Invalid value for {fieldName}: {value}");
             }
         }
 
         // Method to parse an enumeration value
-        private static TEnum ParseEnum<TEnum>(string value, string fieldName) where TEnum : struct {
-            if (Enum.TryParse(value, out TEnum result)) {
+        private static TEnum ParseEnum<TEnum>(string value, string fieldName) where TEnum : struct
+        {
+            if (Enum.TryParse(value, out TEnum result))
+            {
                 return result;
-            } else {
+            }
+            else
+            {
                 throw new ArgumentException($"Invalid value for {fieldName}: {value}");
             }
         }

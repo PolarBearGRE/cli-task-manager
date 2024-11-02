@@ -1,33 +1,43 @@
 using System.Text.Json;
 using TaskManager.Helpers;
 
-namespace TaskManager.Services {
+namespace TaskManager.Services
+{
     // Service class for handling storage operations
-    public static class Storage {
+    public static class Storage
+    {
         private static readonly string FilePath = Config.DatabaseFilePath; // Path to the database file
 
         // Method to load tasks from the JSON file
-        public static List<Models.Task> LoadTasks() {
-            if (!File.Exists(FilePath)) {
+        public static List<Models.Task> LoadTasks()
+        {
+            if (!File.Exists(FilePath))
+            {
                 return new List<Models.Task>(); // Return an empty list if the file does not exist
             }
 
             var json = File.ReadAllText(FilePath);
-            if (string.IsNullOrWhiteSpace(json)) {
+            if (string.IsNullOrWhiteSpace(json))
+            {
                 return new List<Models.Task>(); // Return an empty list if the file is empty
             }
 
-            try {
+            try
+            {
                 return JsonSerializer.Deserialize<List<Models.Task>>(json) ?? new List<Models.Task>(); // Deserialize the JSON content
-            } catch (JsonException) {
+            }
+            catch (JsonException)
+            {
                 return new List<Models.Task>(); // Return an empty list if deserialization fails
             }
         }
 
         // Method to save tasks to the JSON file
-        public static void SaveTasks(List<Models.Task> tasks) {
+        public static void SaveTasks(List<Models.Task> tasks)
+        {
             var directory = Path.GetDirectoryName(FilePath);
-            if (directory != null && !Directory.Exists(directory)) {
+            if (directory != null && !Directory.Exists(directory))
+            {
                 Directory.CreateDirectory(directory); // Create the directory if it does not exist
             }
 
