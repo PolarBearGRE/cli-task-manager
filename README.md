@@ -15,7 +15,7 @@ This project is a command-line interface (CLI) task manager application created 
 
 Add a new task with a title, description, status, and priority.
 
-add -t "Task Title" -d "Task Description" -s <status> -pr <priority>
+add -t "Task Title" -d "Task Description" -s `<status>` -pr `<priority>`
 
 - `-t`: Title of the task (required)
 - `-d`: Description of the task (optional)
@@ -30,12 +30,12 @@ list all
 
 List a specific task by ID.
 
-list <id>
+list `<id>`
 
 Filter tasks by status or priority.
 
-list -param "status=<status>"
-list -param "priority=<priority>"
+list -param "status=`<status>`"
+list -param "priority=`<priority>"
 
 - `status`: Filter tasks by status (1: Completed, 2: Pending, 3: InProgress, 4: Cancelled)
 - `priority`: Filter tasks by priority (1: Low, 2: Medium, 3: High, 4: Critical, 5: Blocker)
@@ -44,7 +44,7 @@ list -param "priority=<priority>"
 
 Update an existing task by ID.
 
-update <id> [-t "New Title"] [-d "New Description"] [-s <status>] [-pr <priority>]
+update `<id>` [-t "New Title"] [-d "New Description"] [-s `<status>`] [-pr `<priority>`]
 
 - `<id>`: ID of the task to update (required)
 - `-t`: New title of the task (optional)
@@ -56,7 +56,7 @@ update <id> [-t "New Title"] [-d "New Description"] [-s <status>] [-pr <priority
 
 Delete a task by ID.
 
-delete <id>
+delete `<id>`
 
 - `<id>`: ID of the task to delete (required)
 
