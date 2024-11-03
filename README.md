@@ -1,4 +1,4 @@
-# CLI Task Manager [26/10/2024]
+# [CLI Task Manager](https://roadmap.sh/projects/task-tracker) [26/10/2024]
 
 This project is a command-line interface (CLI) task manager application created for learning purposes, inspired by [roadmap.sh](https://roadmap.sh). It enables users to add, read, update, and delete tasks through straightforward commands, providing a hands-on way to explore CLI application development.
 
